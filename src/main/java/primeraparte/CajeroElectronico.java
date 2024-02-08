@@ -21,14 +21,15 @@ public class CajeroElectronico {
 		identificadorCliente = sc.nextLine();
 		System.out.println("Ingrese su contraseña: ");
 		password = sc.nextLine();
-
+		System.out.println("Bienvenido " + identificadorCliente);
 		
 
 		do {
-			System.out.println("Menú de opcioes: ");
-			System.out.println("1. Consultar saldo");
-			System.out.println("2. Retirar dinero");
-			System.out.println("3. Transferir dinero");
+			System.out.println("Menú de opciones: ");
+			System.out.println("1. Mostrar saldo actual");
+			System.out.println("2. Ingresar importe");
+			System.out.println("3. Obtener importe");
+			System.out.println("4. Transferir importe");
 			System.out.println("0. Salir");
 
 			menu = sc.nextInt();
