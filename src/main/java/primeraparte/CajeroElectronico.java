@@ -1,6 +1,9 @@
 package primeraparte;
 
+import java.util.Iterator;
 import java.util.Scanner;
+
+import parte1.Cliente;
 
 public class CajeroElectronico {
 
@@ -9,22 +12,36 @@ public class CajeroElectronico {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		String identificadorCliente = " ";
-		String password;
+		int identificadorCliente;
+		int password;
 		int menu = 0;
-		final int cliente = 5;
-		final int contraseña = 5;
+		boolean noExiste = false;
 
-		String[][] clientes = new String[cliente][contraseña];
+		Cliente[] clientes = new Cliente[5];
+
+		clientes[0] = new Cliente(123456, 123456);
+		clientes[1] = new Cliente(98620, 1234);
+		clientes[2] = new Cliente(123, 12345);
+		clientes[3] = new Cliente(12, 123);
+		clientes[4] = new Cliente(12345, 1234);
 
 		System.out.println("Ingrese su identificador de cliente: ");
-		identificadorCliente = sc.nextLine();
-		System.out.println("Ingrese su contraseña: ");
-		password = sc.nextLine();
-		System.out.println("Bienvenido " + identificadorCliente);
-		
+		identificadorCliente = sc.nextInt();
+		if (Cliente.comprobarIdentificador(clientes, identificadorCliente)) {
+			System.out.println("Ingrese su contraseña: ");
+			password = sc.nextInt();
+			if (Cliente.comprobarPassword(clientes, password)) {
+				System.out.println("Bienvenido " + identificadorCliente);
+				noExiste = true;
+			} else {
+				System.out.println("Contraseña incorrecta");
+			}
 
-		do {
+		} else {
+			System.out.println("El identificador no existe");
+		}
+
+		while (noExiste) {
 			System.out.println("Menú de opciones: ");
 			System.out.println("1. Mostrar saldo actual");
 			System.out.println("2. Ingresar importe");
@@ -36,6 +53,7 @@ public class CajeroElectronico {
 
 			switch (menu) {
 			case 1:
+			Cliente.realizarIngreso(clientes[0], 100);
 				break;
 			case 2:
 				break;
@@ -47,7 +65,7 @@ public class CajeroElectronico {
 			default:
 				System.out.println("Opción incorrecta, seleccione un número");
 			}
-		} while (menu != 0);
+		}
 
 	}
 
