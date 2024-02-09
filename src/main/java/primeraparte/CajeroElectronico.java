@@ -14,7 +14,7 @@ public class CajeroElectronico {
 		Scanner sc = new Scanner(System.in);
 		int identificadorCliente;
 		int password;
-		int menu = 0;
+		char menu = ' ';
 		boolean noExiste = false;
 
 		Cliente[] clientes = new Cliente[5];
@@ -40,26 +40,32 @@ public class CajeroElectronico {
 		} else {
 			System.out.println("El identificador no existe");
 		}
+		sc.nextLine();
 
 		while (noExiste) {
 			System.out.println("Menú de opciones: ");
-			System.out.println("1. Mostrar saldo actual");
-			System.out.println("2. Ingresar importe");
-			System.out.println("3. Obtener importe");
-			System.out.println("4. Transferir importe");
-			System.out.println("0. Salir");
+			System.out.println("A. Mostrar saldo actual");
+			System.out.println("B. Ingresar importe");
+			System.out.println("C. Obtener importe");
+			System.out.println("D. Transferir importe");
+			System.out.println("E. Salir");
+			
+			menu = sc.nextLine().toUpperCase().charAt(0);
 
-			menu = sc.nextInt();
-
+		
 			switch (menu) {
-			case 1:
-			Cliente.realizarIngreso(clientes[0], 100);
+			case 'A':
+				System.out.println("el saldo es :" +	clientes[0].getSaldo());
 				break;
-			case 2:
+			case 'B':
+				Cliente.realizarIngreso(clientes[0]);
 				break;
-			case 3:
+			case 'C':
 				break;
-			case 0:
+			case 'D':
+				Cliente.transferirImporte(clientes[0],clientes[1]);				
+				break;
+			case 'E':
 				System.out.println("Salir");
 				break;
 			default:
