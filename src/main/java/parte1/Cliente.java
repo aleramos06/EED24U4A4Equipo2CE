@@ -1,5 +1,7 @@
 package parte1;
 
+import java.util.Scanner;
+
 public class Cliente {
 //	- Tarea 2 crear Clase Cliente con los atributos identificador, password
 //    crear un registro de clientes en la clase CajeroEletronico con 5 clientes diferentes
@@ -27,8 +29,19 @@ public class Cliente {
 		saldo += cantidad;
 	}
 
-	public static void realizarIngreso(Cliente cliente, double saldo) {
+	public int getIdentificador() {
+		return identificador;
+	}
 
+	public void setIdentificador(int identificador) {
+		this.identificador = identificador;
+	}
+
+	public static void realizarIngreso(Cliente cliente) {
+		Scanner sc = new Scanner(System.in);
+		double saldo;
+		System.out.println("Escribe cuanto deseas ingresar: ");
+		saldo = sc.nextDouble();
 		cliente.saldo = cliente.saldo + saldo;
 		System.out.println("El saldo del cliente es " + "[" + cliente.saldo + "]");
 
@@ -57,6 +70,25 @@ public class Cliente {
 
 		}
 		return correcto;
+	}
+
+	void restarCantidad(double cantidad) {
+		saldo -= cantidad;
+	}
+
+	void sumarCantidad(double cantidad) {
+		saldo += cantidad;
+	}
+
+	public static void transferirImporte(Cliente c1, Cliente c2) {
+		Scanner sc = new Scanner(System.in);
+		double cantidad;
+		System.out.println("Ingrese el monto que quiere transferir: ");
+
+		cantidad = sc.nextDouble();
+		c1.restarCantidad(cantidad);
+		c2.sumarCantidad(cantidad);
+		System.out.println("el monto que transfirió es: " + cantidad + " a la persona: " + c2.getIdentificador());
 	}
 
 	@Override
