@@ -3,6 +3,9 @@ package primeraparte;
 import java.util.Scanner;
 
 public class CajeroElectronico {
+	public static void main(String[] args) {
+		
+	
 /**
  * CREACIÓN DE LA CLASE CAJEROELECTRONICO
  * CON ATRIBUNOS DE IDENTIFICADOR DE CLIENTE Y PASSWORD 
@@ -34,22 +37,6 @@ public class CajeroElectronico {
 		 * EMPEZAMOS PIDIENDO ID Y COMPROBABMOS CON EL MÉTODO COMPROBARIDENTIFCADOR SÍ EXISTE.
 		 * SÍ COINCIDE CON ALGUNO DE LOS ID PEDIMOS PASSWORD, Y TAMBIÉN COMPROBAMOS PASSWORD CON EL MÉTODO
 		 */
-		System.out.println("Ingrese su identificador de cliente: ");
-		identificadorCliente = sc.nextInt();
-		if (Cliente.comprobarIdentificador(clientes, identificadorCliente)) {
-			System.out.println("Ingrese su contraseña: ");
-			password = sc.nextInt();
-			if (Cliente.comprobarPassword(clientes, password)) {
-				System.out.println("Bienvenido " + identificadorCliente);
-				isCliente = true;
-			} else {
-				System.out.println("Contraseña incorrecta");
-			}
-
-		} else {
-			System.out.println("El identificador no existe");
-		}
-		sc.nextLine();
 /**
  * LIMPIAMOS BUFFER Y SEGUIDO DE ESTO, PASAMOS A IMPRIMIR NUESTRO MENÚ DONDE EL USUARIO PODRÁ REALIZAR LAS DIVERSAS
  * FUNCIONES.
@@ -78,6 +65,7 @@ public class CajeroElectronico {
 				break;
 			case 'E':
 				System.out.println("Salir");
+				menuClaves();
 				break;
 			default:
 				System.out.println("Opción incorrecta, seleccione una letra correspodiente del menú [A-B-C-D-E]");
@@ -87,5 +75,26 @@ public class CajeroElectronico {
 
 		sc.close();
 	}
+	
+	public  void menuClaves() {
 
+		System.out.println("Ingrese su identificador de cliente: ");
+		identificadorCliente = sc.nextInt();
+		if (Cliente.comprobarIdentificador(clientes, identificadorCliente)) {
+			System.out.println("Ingrese su contraseña: ");
+			password = sc.nextInt();
+			if (Cliente.comprobarPassword(clientes, password)) {
+				System.out.println("Bienvenido " + identificadorCliente);
+				isCliente = true;
+			} else {
+				System.out.println("Contraseña incorrecta");
+			}
+
+		} else {
+			System.out.println("El identificador no existe");
+		}
+		sc.nextLine();
+	}
+
+}
 }
