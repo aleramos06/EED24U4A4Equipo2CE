@@ -3,7 +3,6 @@ package primeraparte;
 import java.util.Scanner;
 
 public class CajeroElectronico {
-	public static void main(String[] args) {
 		
 	
 /**
@@ -59,6 +58,7 @@ public class CajeroElectronico {
 				Cliente.realizarIngreso(clientes[0]);
 				break;
 			case 'C':
+				
 				break;
 			case 'D':
 				Cliente.transferirImporte(clientes[0], clientes[1]);
@@ -96,5 +96,5 @@ public class CajeroElectronico {
 		sc.nextLine();
 	}
 
-}
+
 }
