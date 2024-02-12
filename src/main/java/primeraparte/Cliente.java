@@ -1,4 +1,4 @@
-package parte1;
+package primeraparte;
 
 import java.util.Scanner;
 
@@ -13,30 +13,48 @@ public class Cliente {
 	double saldo;
 
 	/**
-	 * @param identificador
-	 * @param password
+	 * @param identificador de clientes para su posterior registro
+	 * @param password de clientes
 	 */
-	public Cliente(int identificador, int password) {
+	
+	//CONSTRUCTOR DEL CLIENTE CON PASSWORD E IDENTIFICADOR
+	public Cliente(int identificador, int password) { 
 		this.identificador = identificador;
 		this.password = password;
 	}
-
+/**
+ * MÉTODO GET PARA SABER  EL SALDO DEL CLIENTE
+ * @return
+ */
 	public double getSaldo() {
 		return saldo;
 	}
-
+/**
+ * MÉTODO PARA INGRESAR SALDO EN CLIENTES PASANDO COMO PARAMETO LA CANTIDAD DE TIPO DOUBLE
+ * @param cantidad
+ */
 	public void ingresarSaldo(double cantidad) {
 		saldo += cantidad;
 	}
-
+/**
+ * MÉTODO PARA VISUALIZAAR EL IDENTIFICADOR DEL CLIENTE, DONDE SE RETORTA DICHO ATRIBUTO
+ * @return
+ */
 	public int getIdentificador() {
 		return identificador;
 	}
-
+/**
+ * TENEMOS TAMBIÉN MÉTODO SET PARA LA OBTENCIÓN DE IDENTIFICACIÓN DE CLIENTES
+ * @param identificador
+ */
 	public void setIdentificador(int identificador) {
 		this.identificador = identificador;
 	}
-
+/**
+ * MÉTODO RELIZAR INGRESO DONDE PASAMOS COMO PARAMETRO NUESTRO CONSTRUCTOR CON SU RESPECTIVO OBJETO.
+ * DONDE PODEMOS PASAR TODA LA INFORMACIÓN RELACIONADA AL INGRESO DE DINERO
+ * @param cliente
+ */
 	public static void realizarIngreso(Cliente cliente) {
 		Scanner sc = new Scanner(System.in);
 		double saldo;
@@ -46,7 +64,13 @@ public class Cliente {
 		System.out.println("El saldo del cliente es " + "[" + cliente.saldo + "]");
 
 	}
-
+/**
+ * MÉTODO PARA COMPROBAR CREDENCIALES DEL USUARIO EN ESTE CASO IDENTIFICADOR, DONDE RECORREMOS EN UN FOR 
+ * TODOS LOS CLIENTES PARA ASÍ COMPROBRAR SÍ EXISTE EN NUESTRO ARRAY
+ * @param cliente
+ * @param identificador
+ * @return
+ */
 	public static boolean comprobarIdentificador(Cliente[] cliente, int identificador) {
 		boolean correcto = false;
 		for (int i = 0; i < cliente.length; i++) {
@@ -58,7 +82,12 @@ public class Cliente {
 		}
 		return correcto;
 	}
-
+/**
+ * COMPROBACIÓN DE CONTRASEÑA EN EL ARRAY RECORRIENDOLO
+ * @param cliente
+ * @param password
+ * @return
+ */
 	public static boolean comprobarPassword(Cliente[] cliente, int password) {
 		boolean correcto = false;
 		for (int i = 0; i < cliente.length; i++) {
@@ -71,15 +100,26 @@ public class Cliente {
 		}
 		return correcto;
 	}
-
+/**
+ * MÉTODO PARA HACER LA RETIRADA DEL DINERO, PASANDOLE EL DATO DE CANTIDAD
+ * @param cantidad
+ */
 	void restarCantidad(double cantidad) {
 		saldo -= cantidad;
 	}
-
+/**
+ * MÉTODO PARA SUMAR AL SALDO DEL USUARIO EL DATO INGRESADO
+ * @param cantidad
+ */
 	void sumarCantidad(double cantidad) {
 		saldo += cantidad;
 	}
-
+/**
+ * MÉTODO PARA TRANSFERIR DINERO ENTRE CLIENTES 1 Y 2, DE SER ASI DEBERRÍA IMPLEMENTARSE DE OTRA FORMA PARA HACER 
+ * LA TRANSFERENCIA
+ * @param c1
+ * @param c2
+ */
 	public static void transferirImporte(Cliente c1, Cliente c2) {
 		Scanner sc = new Scanner(System.in);
 		double cantidad;
@@ -90,7 +130,9 @@ public class Cliente {
 		c2.sumarCantidad(cantidad);
 		System.out.println("el monto que transfirió es: " + cantidad + " a la persona: " + c2.getIdentificador());
 	}
-
+/**
+ * MÉTODO OVERRIDE PARA IMPRIMIR TODO LOS DATOS DEL CLIENTE
+ */
 	@Override
 	public String toString() {
 		return "Clientes [identificador =" + identificador + ", password =" + password + "]";
