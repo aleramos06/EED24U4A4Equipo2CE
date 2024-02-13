@@ -4,4 +4,10 @@
   <artifactId>Grupo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Actividad4</name>
+  <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
+        <exec.mainClass>CajeroElectronico</exec.mainClass>
+    </properties>
 </project>
