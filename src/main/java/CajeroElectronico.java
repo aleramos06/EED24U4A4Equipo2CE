@@ -1,3 +1,5 @@
+package main.java;
+
 
 import java.util.Scanner;
 
@@ -60,7 +62,7 @@ public class CajeroElectronico {
 			case 'C':
 				break;
 			case 'D':
-				Cliente.transferirImporte(clientes[0], clientes[1]);
+				Cliente.transferirImporte(clientes);
 				break;
 			case 'E':
 				System.out.println("Salir");

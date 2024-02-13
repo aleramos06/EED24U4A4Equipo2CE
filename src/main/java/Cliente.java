@@ -1,3 +1,5 @@
+package main.java;
+
 import java.util.Scanner;
 
 public class Cliente {
@@ -142,15 +144,26 @@ public class Cliente {
 	 * @param c1
 	 * @param c2
 	 */
-	public static void transferirImporte(Cliente c1, Cliente c2) {
+	public static void transferirImporte(Cliente[] cliente) {
 		Scanner sc = new Scanner(System.in);
 		double cantidad;
-		System.out.println("Ingrese el monto que quiere transferir: ");
+		System.out.println("Elije a que cliente quieres transferir");
+		System.out.println("--- CLIENTE 1 ---");
+		System.out.println("--- CLIENTE 2 ---");
+		System.out.println("--- CLIENTE 3 ---");
+		System.out.println("--- CLIENTE 4 ---");
+		System.out.println("--- CLIENTE 5 ---");
+		int numeroCliente = sc.nextInt();
 
-		cantidad = sc.nextDouble();
-		c1.restarCantidad(cantidad);
-		c2.sumarCantidad(cantidad);
-		System.out.println("el monto que transfirió es: " + cantidad + " a la persona: " + c2.getIdentificador());
+		if (numeroCliente >= 1 && numeroCliente <= 5) {
+			System.out.println("Ingrese el monto que quiere transferir: ");
+
+			cantidad = sc.nextDouble();
+			
+	
+
+		}
+
 	}
 
 	/**
@@ -160,4 +173,5 @@ public class Cliente {
 	public String toString() {
 		return "Clientes [identificador =" + identificador + ", password =" + password + "]";
 	}
+
 }
