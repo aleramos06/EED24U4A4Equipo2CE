@@ -62,7 +62,7 @@ public class CajeroElectronico {
 			case 'C':
 				break;
 			case 'D':
-				Cliente.transferirImporte(clientes);
+				Cliente.transferirImporte(null, null);
 				break;
 			case 'E':
 				System.out.println("Salir");
