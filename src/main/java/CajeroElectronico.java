@@ -14,8 +14,8 @@ public class CajeroElectronico {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int identificadorCliente;
-		int password;
+		int identificadorCliente = 0;
+		int password = 0;
 		char menu = ' ';
 		boolean isCliente = false;
 
@@ -62,7 +62,7 @@ public class CajeroElectronico {
 			case 'C':
 				break;
 			case 'D':
-				Cliente.transferirImporte(clientes);
+				Cliente.transferirImporte(clientes[1], clientes[2]);
 				break;
 			case 'E':
 				System.out.println("Salir");
