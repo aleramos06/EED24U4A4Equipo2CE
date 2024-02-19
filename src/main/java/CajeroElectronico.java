@@ -59,7 +59,8 @@ public class CajeroElectronico {
 			case 'B':
 				Cliente.realizarIngreso(clientes[0]);
 				break;
-			case 'C':
+			case 'C': 
+				
 				break;
 			case 'D':
 				Cliente.transferirImporte(null, null);
@@ -72,7 +73,8 @@ public class CajeroElectronico {
 				System.out.println("Opción incorrecta, seleccione una letra correspodiente del menú [A-B-C-D-E]");
 			}
 
-		}
+		} 
+		
 
 		sc.close();
 	}
