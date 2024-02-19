@@ -11,7 +11,6 @@ public class Cliente {
 
 	int identificador;
 	int password;
-	
 	double monedero;
 
 	/**
@@ -31,7 +30,7 @@ public class Cliente {
 	private double numeroAleatorio(int min, int max) {
 		Random rnd = new Random();
 		double saldoMonedero = rnd.nextDouble(min, max); 
-		System.out.println(saldoMonedero);
+		
 		return saldoMonedero;
 	}
 	
