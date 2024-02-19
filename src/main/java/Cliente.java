@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Cliente {
@@ -9,6 +10,7 @@ public class Cliente {
 	int identificador;
 	int password;
 	double saldo;
+	double monedero;
 
 	/**
 	 * @param identificador de clientes para su posterior registro
@@ -18,8 +20,26 @@ public class Cliente {
 	// CONSTRUCTOR DEL CLIENTE CON PASSWORD E IDENTIFICADOR
 	public Cliente(int identificador, int password) {
 		this.identificador = identificador;
-		this.password = password;
+		this.password = password; 
+		this.monedero = numeroAleatorio(1000,20000);
 	}
+	
+	
+
+	private double numeroAleatorio(int min, int max) {
+		Random rnd = new Random();
+		double saldoMonedero = rnd.nextDouble(); 
+		
+		return saldoMonedero;
+	}
+	
+	
+
+	public double getMonedero() {
+		return monedero;
+	}
+
+
 
 	/**
 	 * MÉTODO GET PARA SABER EL SALDO DEL CLIENTE
@@ -151,7 +171,9 @@ public class Cliente {
 		c1.restarCantidad(cantidad);
 		c2.sumarCantidad(cantidad);
 		System.out.println("el monto que transfirió es: " + cantidad + " a la persona: " + c2.getIdentificador());
-	}
+	} 
+	
+	
 
 	/**
 	 * MÉTODO OVERRIDE PARA IMPRIMIR TODO LOS DATOS DEL CLIENTE
