@@ -37,7 +37,7 @@ public class CajeroElectronico {
 		 * COMPROBAMOS PASSWORD CON EL MÉTODO
 		 */
 		
-
+		isCliente = menuClaves(clientes);
 		/**
 		 * LIMPIAMOS BUFFER Y SEGUIDO DE ESTO, PASAMOS A IMPRIMIR NUESTRO MENÚ DONDE EL
 		 * USUARIO PODRÁ REALIZAR LAS DIVERSAS FUNCIONES.
