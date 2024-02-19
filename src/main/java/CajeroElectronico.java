@@ -37,7 +37,7 @@ public class CajeroElectronico {
 		 * COMPROBAMOS PASSWORD CON EL MÉTODO
 		 */
 		
-		isCliente = menuClaves(clientes);
+
 		/**
 		 * LIMPIAMOS BUFFER Y SEGUIDO DE ESTO, PASAMOS A IMPRIMIR NUESTRO MENÚ DONDE EL
 		 * USUARIO PODRÁ REALIZAR LAS DIVERSAS FUNCIONES.
@@ -54,7 +54,7 @@ public class CajeroElectronico {
 
 			switch (menu) {
 			case 'A':
-				System.out.println("el saldo es :" + clientes[0].getSaldo());
+				System.out.println("el saldo es :" + clientes[0].getMonedero());
 				break;
 			case 'B':
 				Cliente.realizarIngreso(clientes[0]);
@@ -63,7 +63,7 @@ public class CajeroElectronico {
 				
 				break;
 			case 'D':
-				Cliente.transferirImporte(null, null);
+				Cliente.transferirImporte(clientes[0], clientes[1]);
 				break;
 			case 'E':
 				System.out.println("Salir");

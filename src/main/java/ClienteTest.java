@@ -14,14 +14,14 @@ public class ClienteTest {
     @Test
     public void testGetSaldo() {
         // Verificamos que el saldo inicial sea el correcto
-        assertEquals(5000.0, cliente1.getSaldo(), 0.0);
+        assertEquals(5000.0, cliente1.getMonedero(), 0.0);
     }
 
     @Test
     public void testIngresarSaldo() {
         // Ingresamos 1000 al saldo del cliente1
         cliente1.ingresarSaldo(1000);
-        assertEquals(6000.0, cliente1.getSaldo(), 0.0);
+        assertEquals(6000.0, cliente1.getMonedero(), 0.0);
     }
 
     @Test
@@ -45,8 +45,8 @@ public class ClienteTest {
         // Transferimos 1000 de cliente1 a cliente2
         cliente1.transferirImporte(cliente2, cliente1);
         // Verificamos que el saldo de cliente1 se redujo y el saldo de cliente2 aumentó
-        assertEquals(4000.0, cliente1.getSaldo(), 0.0);
-        assertEquals(6000.0, cliente2.getSaldo(), 0.0);
+        assertEquals(4000.0, cliente1.getMonedero(), 0.0);
+        assertEquals(6000.0, cliente2.getMonedero(), 0.0);
     }
 }
 

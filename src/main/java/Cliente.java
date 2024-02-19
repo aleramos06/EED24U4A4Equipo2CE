@@ -11,7 +11,7 @@ public class Cliente {
 
 	int identificador;
 	int password;
-	double saldo;
+	
 	double monedero;
 
 	/**
@@ -30,16 +30,14 @@ public class Cliente {
 
 	private double numeroAleatorio(int min, int max) {
 		Random rnd = new Random();
-		double saldoMonedero = rnd.nextDouble(); 
-		
+		double saldoMonedero = rnd.nextDouble(min, max); 
+		System.out.println(saldoMonedero);
 		return saldoMonedero;
 	}
 	
 	
 
-	public double getMonedero() {
-		return monedero;
-	}
+
 
 
 
@@ -48,8 +46,8 @@ public class Cliente {
 	 * 
 	 * @return
 	 */
-	public double getSaldo() {
-		return saldo;
+	public double getMonedero() {
+		return monedero;
 	}
 
 	/**
@@ -59,7 +57,7 @@ public class Cliente {
 	 * @param cantidad
 	 */
 	public void ingresarSaldo(double cantidad) {
-		saldo += cantidad;
+		monedero += cantidad;
 	}
 
 	/**
@@ -93,8 +91,8 @@ public class Cliente {
 		double saldo;
 		System.out.println("Escribe cuanto deseas ingresar: ");
 		saldo = sc.nextDouble();
-		cliente.saldo = cliente.saldo + saldo;
-		System.out.println("El saldo del cliente es " + "[" + cliente.saldo + "]");
+		cliente.monedero = cliente.monedero + saldo;
+		System.out.println("El saldo del cliente es " + "[" + cliente.monedero + "]");
 
 	}
 
@@ -145,7 +143,7 @@ public class Cliente {
 	 * @param cantidad
 	 */
 	void restarCantidad(double cantidad) {
-		saldo -= cantidad;
+		monedero -= cantidad;
 	}
 
 	/**
@@ -154,7 +152,7 @@ public class Cliente {
 	 * @param cantidad
 	 */
 	void sumarCantidad(double cantidad) {
-		saldo += cantidad;
+		monedero += cantidad;
 	}
 
 	/**
