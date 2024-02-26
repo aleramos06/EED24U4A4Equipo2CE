@@ -49,6 +49,29 @@ public class Cliente {
 			System.out.println("Índice de inversión inválido.");
 		}
 	}
+	public boolean tieneInversiones() {
+	    return numInversiones > 0;
+	}
+
+	public Inversion[] getInversiones() {
+	    return inversiones;
+	}
+	private void comprobarInversiones(Cliente cliente) {
+	    if (cliente.tieneInversiones()) {
+	        Inversion[] inversiones = cliente.getInversiones();
+	        for (Inversion inversion : inversiones) {
+	            double cantidadAnterior = inversion.getCantidad();
+	            double coeficienteInversion = inversion.obtenerBeneficios() / cantidadAnterior;
+	            double cantidadResultante = inversion.obtenerCantidadConBeneficios();
+	            System.out.println("Inversion: " + inversion.getNombre());
+	            System.out.println("Cantidad anterior: " + cantidadAnterior);
+	            System.out.println("Coeficiente de inversión: " + coeficienteInversion);
+	            System.out.println("Cantidad resultante: " + cantidadResultante);
+	        }
+	    } else {
+	        System.out.println("El cliente no tiene inversiones.");
+	    }
+	}
 
 	private double numeroAleatorio(int min, int max) {
 		Random rnd = new Random();
@@ -188,6 +211,7 @@ public class Cliente {
 		c2.sumarCantidad(cantidad);
 		System.out.println("el monto que transfirió es: " + cantidad + " a la persona: " + c2.getIdentificador());
 	}
+	
 
 	/**
 	 * MÉTODO OVERRIDE PARA IMPRIMIR TODO LOS DATOS DEL CLIENTE
