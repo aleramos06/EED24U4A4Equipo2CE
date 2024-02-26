@@ -2,19 +2,17 @@ package main.java;
 
 import java.util.Scanner;
 
-public class CajeroElectronico {
+public class BancoElectrónico {
 
 	/**
 	 * CREACIÓN DE LA CLASE CAJEROELECTRONICO CON ATRIBUNOS DE IDENTIFICADOR DE
 	 * CLIENTE Y PASSWORD
 	 */
-	int identificadorCliente;
-	int password;
+
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int identificadorCliente;
-		int password;
+
 		char menu = ' ';
 		boolean isCliente = false;
 

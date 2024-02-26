@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Recibo {
 	
-	int cantidad;
-	String nombre;
+	private int cantidad;
+	private String nombre;
 
 	public Recibo(int cantidad, String nombre) {
 		super();
