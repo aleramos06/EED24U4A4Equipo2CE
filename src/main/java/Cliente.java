@@ -1,5 +1,6 @@
 package main.java;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -9,11 +10,11 @@ public class Cliente {
 //  modificar la ejecución del menu para que compruebe si el identificador introducido existe y después si la password es correcta.
 // En caso erróneo se debe mostrar y volverá a empezar:
 
-	int identificador;
-	int password;
-	double monedero;
-	Inversion[] inversiones;
-	int numInversiones;
+	private int identificador;
+	private int password;
+	private double monedero;
+	private Inversion[] inversiones;
+	private int numInversiones;
 
 	/**
 	 * @param identificador de clientes para su posterior registro
@@ -22,55 +23,57 @@ public class Cliente {
 
 	// CONSTRUCTOR DEL CLIENTE CON PASSWORD E IDENTIFICADOR
 	public Cliente(int identificador, int password) {
-		this.identificador = identificador;
-		this.password = password;
-		this.monedero = numeroAleatorio(1000, 20000);
-		this.inversiones = new Inversion[10]; // Por ejemplo, un array de tamaño 10
-		this.numInversiones = 0;
+		this.setIdentificador(identificador);
+		this.setPassword(password);
+		this.setMonedero(numeroAleatorio(1000, 20000));
+		this.setInversiones(new Inversion[10]); // Por ejemplo, un array de tamaño 10
+		this.setNumInversiones(0);
 	}
 
 	public void agregarInversion(Inversion inversion) {
-		if (numInversiones < inversiones.length) {
-			inversiones[numInversiones] = inversion;
-			numInversiones++;
+		if (getNumInversiones() < getInversiones().length) {
+			getInversiones()[getNumInversiones()] = inversion;
+			setNumInversiones(getNumInversiones() + 1);
 		} else {
 			System.out.println("No se pueden agregar más inversiones. El límite ha sido alcanzado.");
 		}
 	}
 
 	public void eliminarInversion(int indice) {
-		if (indice >= 0 && indice < numInversiones) {
-			for (int i = indice; i < numInversiones - 1; i++) {
-				inversiones[i] = inversiones[i + 1];
+		if (indice >= 0 && indice < getNumInversiones()) {
+			for (int i = indice; i < getNumInversiones() - 1; i++) {
+				getInversiones()[i] = getInversiones()[i + 1];
 			}
-			inversiones[numInversiones - 1] = null;
-			numInversiones--;
+			getInversiones()[getNumInversiones() - 1] = null;
+			setNumInversiones(getNumInversiones() - 1);
 		} else {
 			System.out.println("Índice de inversión inválido.");
 		}
 	}
+
 	public boolean tieneInversiones() {
-	    return numInversiones > 0;
+		return getNumInversiones() > 0;
 	}
 
 	public Inversion[] getInversiones() {
-	    return inversiones;
+		return inversiones;
 	}
+
 	private void comprobarInversiones(Cliente cliente) {
-	    if (cliente.tieneInversiones()) {
-	        Inversion[] inversiones = cliente.getInversiones();
-	        for (Inversion inversion : inversiones) {
-	            double cantidadAnterior = inversion.getCantidad();
-	            double coeficienteInversion = inversion.obtenerBeneficios() / cantidadAnterior;
-	            double cantidadResultante = inversion.obtenerCantidadConBeneficios();
-	            System.out.println("Inversion: " + inversion.getNombre());
-	            System.out.println("Cantidad anterior: " + cantidadAnterior);
-	            System.out.println("Coeficiente de inversión: " + coeficienteInversion);
-	            System.out.println("Cantidad resultante: " + cantidadResultante);
-	        }
-	    } else {
-	        System.out.println("El cliente no tiene inversiones.");
-	    }
+		if (cliente.tieneInversiones()) {
+			Inversion[] inversiones = cliente.getInversiones();
+			for (Inversion inversion : inversiones) {
+				double cantidadAnterior = inversion.getCantidad();
+				double coeficienteInversion = inversion.obtenerBeneficios() / cantidadAnterior;
+				// double cantidadResultante = inversion.obtenerCantidadConBeneficios();
+				System.out.println("Inversion: " + inversion.getNombre());
+				System.out.println("Cantidad anterior: " + cantidadAnterior);
+				System.out.println("Coeficiente de inversión: " + coeficienteInversion);
+				// System.out.println("Cantidad resultante: " + cantidadResultante);
+			}
+		} else {
+			System.out.println("El cliente no tiene inversiones.");
+		}
 	}
 
 	private double numeroAleatorio(int min, int max) {
@@ -96,7 +99,7 @@ public class Cliente {
 	 * @param cantidad
 	 */
 	public void ingresarSaldo(double cantidad) {
-		monedero += cantidad;
+		setMonedero(getMonedero() + cantidad);
 	}
 
 	/**
@@ -130,8 +133,8 @@ public class Cliente {
 		double saldo;
 		System.out.println("Escribe cuanto deseas ingresar: ");
 		saldo = sc.nextDouble();
-		cliente.monedero = cliente.monedero + saldo;
-		System.out.println("El saldo del cliente es " + "[" + cliente.monedero + "]");
+		cliente.setMonedero(cliente.getMonedero() + saldo);
+		System.out.println("El saldo del cliente es " + "[" + cliente.getMonedero() + "]");
 
 	}
 
@@ -147,7 +150,7 @@ public class Cliente {
 	public static boolean comprobarIdentificador(Cliente[] cliente, int identificador) {
 		boolean correcto = false;
 		for (int i = 0; i < cliente.length; i++) {
-			if (cliente[i].identificador == identificador) {
+			if (cliente[i].getIdentificador() == identificador) {
 				correcto = true;
 				return correcto;
 			}
@@ -166,7 +169,7 @@ public class Cliente {
 	public static boolean comprobarPassword(Cliente[] cliente, int password) {
 		boolean correcto = false;
 		for (int i = 0; i < cliente.length; i++) {
-			if (cliente[i].password == password) {
+			if (cliente[i].getPassword() == password) {
 				correcto = true;
 				return correcto;
 
@@ -182,7 +185,7 @@ public class Cliente {
 	 * @param cantidad
 	 */
 	void restarCantidad(double cantidad) {
-		monedero -= cantidad;
+		setMonedero(getMonedero() - cantidad);
 	}
 
 	/**
@@ -191,7 +194,7 @@ public class Cliente {
 	 * @param cantidad
 	 */
 	void sumarCantidad(double cantidad) {
-		monedero += cantidad;
+		setMonedero(getMonedero() + cantidad);
 	}
 
 	/**
@@ -211,14 +214,39 @@ public class Cliente {
 		c2.sumarCantidad(cantidad);
 		System.out.println("el monto que transfirió es: " + cantidad + " a la persona: " + c2.getIdentificador());
 	}
-	
+
+	public int getPassword() {
+		return password;
+	}
+
+	public void setPassword(int password) {
+		this.password = password;
+	}
+
+	public void setMonedero(double monedero) {
+		this.monedero = monedero;
+	}
+
+	public void setInversiones(Inversion[] inversiones) {
+		this.inversiones = inversiones;
+	}
+
+	public int getNumInversiones() {
+		return numInversiones;
+	}
+
+	public void setNumInversiones(int numInversiones) {
+		this.numInversiones = numInversiones;
+	}
 
 	/**
 	 * MÉTODO OVERRIDE PARA IMPRIMIR TODO LOS DATOS DEL CLIENTE
 	 */
 	@Override
 	public String toString() {
-		return "Clientes [identificador =" + identificador + ", password =" + password + "]";
+		return "Cliente [getIdentificador()=" + getIdentificador() + ", getPassword()=" + getPassword()
+				+ ", getMonedero()=" + getMonedero() + ", getInversiones()=" + Arrays.toString(getInversiones()) + "]";
 	}
 
+	
 }
