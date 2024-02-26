@@ -48,5 +48,10 @@ public class ClienteTest {
         assertEquals(4000.0, cliente1.getMonedero(), 0.0);
         assertEquals(6000.0, cliente2.getMonedero(), 0.0);
     }
+    @Test 
+    public void testMonedero() {
+    	cliente1.getMonedero();
+    	assertEquals(1000, 20000);
+    }
 }
 
