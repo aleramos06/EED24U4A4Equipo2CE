@@ -1,6 +1,5 @@
 package main.java;
 
-
 import java.util.Scanner;
 
 public class CajeroElectronico {
@@ -36,7 +35,7 @@ public class CajeroElectronico {
 		 * EXISTE. SÍ COINCIDE CON ALGUNO DE LOS ID PEDIMOS PASSWORD, Y TAMBIÉN
 		 * COMPROBAMOS PASSWORD CON EL MÉTODO
 		 */
-		
+
 		isCliente = menuClaves(clientes);
 		/**
 		 * LIMPIAMOS BUFFER Y SEGUIDO DE ESTO, PASAMOS A IMPRIMIR NUESTRO MENÚ DONDE EL
@@ -48,8 +47,10 @@ public class CajeroElectronico {
 			System.out.println("B. Ingresar importe");
 			System.out.println("C. Obtener importe");
 			System.out.println("D. Transferir importe");
-			System.out.println("E. Salir");
-
+			System.out.println("E. Añadir Inversión");
+			System.out.println("F. Eliminar Inversión");
+			System.out.println("G. Comprobar Inversiones");
+			System.out.println("H. Salir");
 			menu = sc.nextLine().toUpperCase().charAt(0);
 
 			switch (menu) {
@@ -59,13 +60,21 @@ public class CajeroElectronico {
 			case 'B':
 				Cliente.realizarIngreso(clientes[0]);
 				break;
-			case 'C': 
-				
+			case 'C':
+
 				break;
 			case 'D':
 				Cliente.transferirImporte(clientes[0], clientes[1]);
 				break;
 			case 'E':
+
+				break;
+			case 'F':
+				break;
+			case 'G':
+				break;
+
+			case 'H':
 				System.out.println("Salir");
 				isCliente = menuClaves(clientes);
 				break;
@@ -73,8 +82,7 @@ public class CajeroElectronico {
 				System.out.println("Opción incorrecta, seleccione una letra correspodiente del menú [A-B-C-D-E]");
 			}
 
-		} 
-		
+		}
 
 		sc.close();
 	}
@@ -82,7 +90,7 @@ public class CajeroElectronico {
 	public static boolean menuClaves(Cliente[] clientes) {
 		Scanner sc = new Scanner(System.in);
 		boolean isCliente = false;
-		int identificadorCliente; 
+		int identificadorCliente;
 		int password;
 		System.out.println("Ingrese su identificador de cliente: ");
 		identificadorCliente = sc.nextInt();
@@ -102,6 +110,5 @@ public class CajeroElectronico {
 		sc.nextLine();
 		return isCliente;
 	}
-	
 
 }
