@@ -4,12 +4,6 @@ import java.util.Scanner;
 
 public class CajeroElectronico {
 
-	/**
-	 * CREACIÓN DE LA CLASE CAJEROELECTRONICO CON ATRIBUNOS DE IDENTIFICADOR DE
-	 * CLIENTE Y PASSWORD
-	 */
-	int identificadorCliente;
-	int password;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
