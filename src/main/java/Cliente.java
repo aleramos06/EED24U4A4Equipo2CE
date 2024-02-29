@@ -9,11 +9,11 @@ public class Cliente {
 //  modificar la ejecución del menu para que compruebe si el identificador introducido existe y después si la password es correcta.
 // En caso erróneo se debe mostrar y volverá a empezar:
 
-	int identificador;
-	int password;
-	double monedero;
-	Inversion[] inversiones;
-	int numInversiones;
+	private int identificador;
+	private int password;
+	private double monedero;
+	private Inversion[] inversiones;
+	private int numInversiones;
 
 	/**
 	 * @param identificador de clientes para su posterior registro
@@ -62,11 +62,11 @@ public class Cliente {
 	        for (Inversion inversion : inversiones) {
 	            double cantidadAnterior = inversion.getCantidad();
 	            double coeficienteInversion = inversion.obtenerBeneficios() / cantidadAnterior;
-	            double cantidadResultante = inversion.obtenerCantidadConBeneficios();
+	    //        double cantidadResultante = inversion.obtenerCantidadConBeneficios();
 	            System.out.println("Inversion: " + inversion.getNombre());
 	            System.out.println("Cantidad anterior: " + cantidadAnterior);
 	            System.out.println("Coeficiente de inversión: " + coeficienteInversion);
-	            System.out.println("Cantidad resultante: " + cantidadResultante);
+	//            System.out.println("Cantidad resultante: " + cantidadResultante);
 	        }
 	    } else {
 	        System.out.println("El cliente no tiene inversiones.");

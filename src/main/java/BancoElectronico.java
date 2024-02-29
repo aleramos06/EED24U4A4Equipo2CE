@@ -2,19 +2,16 @@ package main.java;
 
 import java.util.Scanner;
 
-public class CajeroElectronico {
+public class BancoElectronico {
 
 	/**
 	 * CREACIÓN DE LA CLASE CAJEROELECTRONICO CON ATRIBUNOS DE IDENTIFICADOR DE
 	 * CLIENTE Y PASSWORD
 	 */
-	int identificadorCliente;
-	int password;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int identificadorCliente;
-		int password;
+		
 		char menu = ' ';
 		boolean isCliente = false;
 
@@ -67,13 +64,11 @@ public class CajeroElectronico {
 				Cliente.transferirImporte(clientes[0], clientes[1]);
 				break;
 			case 'E':
-
 				break;
 			case 'F':
 				break;
 			case 'G':
 				break;
-
 			case 'H':
 				System.out.println("Salir");
 				isCliente = menuClaves(clientes);

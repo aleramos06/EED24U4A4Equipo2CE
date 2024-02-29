@@ -1,11 +1,11 @@
 package main.java;
 
-<<<<<<< HEAD
+
 import java.util.Random;
 
 public class Inversion {
-	int cantidad;
-	String nombre;
+	private int cantidad;
+	private String nombre;
 
 	public Inversion(int cantidad, String nombre) {
 		super();
@@ -40,35 +40,6 @@ public class Inversion {
 			return -cantidad + aleatorio;
 		}
 
+
 	}
-=======
-public class Inversion {
-
-	private String nombre;
-	private double cantidad;
-
-	// Constructor
-	public Inversion(String nombre, double cantidad) {
-		this.nombre = nombre;
-		this.cantidad = cantidad;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public double getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(double cantidad) {
-		this.cantidad = cantidad;
-	}
-	
->>>>>>> refs/remotes/origin/master
-
 }
