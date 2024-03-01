@@ -49,28 +49,30 @@ public class Cliente {
 			System.out.println("Índice de inversión inválido.");
 		}
 	}
+
 	public boolean tieneInversiones() {
-	    return numInversiones > 0;
+		return numInversiones > 0;
 	}
 
 	public Inversion[] getInversiones() {
-	    return inversiones;
+		return inversiones;
 	}
+
 	private void comprobarInversiones(Cliente cliente) {
-	    if (cliente.tieneInversiones()) {
-	        Inversion[] inversiones = cliente.getInversiones();
-	        for (Inversion inversion : inversiones) {
-	            double cantidadAnterior = inversion.getCantidad();
-	            double coeficienteInversion = inversion.obtenerBeneficios() / cantidadAnterior;
-	    //        double cantidadResultante = inversion.obtenerCantidadConBeneficios();
-	            System.out.println("Inversion: " + inversion.getNombre());
-	            System.out.println("Cantidad anterior: " + cantidadAnterior);
-	            System.out.println("Coeficiente de inversión: " + coeficienteInversion);
-	//            System.out.println("Cantidad resultante: " + cantidadResultante);
-	        }
-	    } else {
-	        System.out.println("El cliente no tiene inversiones.");
-	    }
+		if (cliente.tieneInversiones()) {
+			Inversion[] inversiones = cliente.getInversiones();
+			for (Inversion inversion : inversiones) {
+				double cantidadAnterior = inversion.getCantidad();
+				double coeficienteInversion = inversion.obtenerBeneficios() / cantidadAnterior;
+				// double cantidadResultante = inversion.obtenerCantidadConBeneficios();
+				System.out.println("Inversion: " + inversion.getNombre());
+				System.out.println("Cantidad anterior: " + cantidadAnterior);
+				System.out.println("Coeficiente de inversión: " + coeficienteInversion);
+				// System.out.println("Cantidad resultante: " + cantidadResultante);
+			}
+		} else {
+			System.out.println("El cliente no tiene inversiones.");
+		}
 	}
 
 	private double numeroAleatorio(int min, int max) {
@@ -211,7 +213,81 @@ public class Cliente {
 		c2.sumarCantidad(cantidad);
 		System.out.println("el monto que transfirió es: " + cantidad + " a la persona: " + c2.getIdentificador());
 	}
-	
+
+//NUEVO
+	public int getPassword() {
+		return password;
+	}
+
+	public void setPassword(int password) {
+		this.password = password;
+	}
+
+	public void setMonedero(double monedero) {
+		this.monedero = monedero;
+	}
+
+	public void setInversiones(Inversion[] inversiones) {
+		this.inversiones = inversiones;
+	}
+
+	public static void mostrarSaldoCliente(Cliente[] clientes, int idenficadorCliente) {
+
+		for (int i = 0; i < clientes.length; i++) {
+			if (clientes[i].identificador == idenficadorCliente) {
+				System.out.println("EL saldo de tu cuenta es :" + clientes[i].monedero);
+			}
+		}
+	}
+
+	public static void ingresarSaldoCliente(Cliente[] clientes, int idenficadorCliente) {
+		Scanner sc = new Scanner(System.in);
+		for (int i = 0; i < clientes.length; i++) {
+			if (clientes[i].identificador == idenficadorCliente) {
+				System.out.println("Introduce el salgo a ingresar a tu cuenta");
+				double ingreso = sc.nextDouble();
+
+				clientes[i].setMonedero(clientes[i].getMonedero() + ingreso);
+			}
+		}
+	}
+
+	public static void retirarSaldoCliente(Cliente[] clientes, int idenficadorCliente) {
+		Scanner sc = new Scanner(System.in);
+		for (int i = 0; i < clientes.length; i++) {
+			if (clientes[i].identificador == idenficadorCliente) {
+				System.out.println("Introduce el salgo a retirar de tu cuenta");
+				double retirada = sc.nextDouble();
+
+				clientes[i].setMonedero(clientes[i].getMonedero() - retirada);
+			}
+		}
+	}
+
+	public static void transferenciaClientes(Cliente[] clientes, int idenficadorCliente) {
+		Scanner sc = new Scanner(System.in);
+		boolean noExiste=true;
+		for (int i = 0; i < clientes.length; i++) {
+			if (clientes[i].identificador == idenficadorCliente) {
+				System.out.println("Introduce el identificador del otro cliente a transferir");
+				int idenDestino = sc.nextInt();
+				System.out.println("Introduce cuanto quieres tranferir");
+				double transferencia = sc.nextDouble();
+				for (int j = 0; j < clientes.length; j++) {
+					if (idenDestino == clientes[j].getIdentificador()) {
+						clientes[i].setMonedero(clientes[i].getMonedero() - transferencia);
+						clientes[j].setMonedero(clientes[j].getMonedero() + transferencia);
+						noExiste=false;
+					}
+
+				}
+
+			}
+		}
+		if (noExiste) {
+			System.out.println("El cliente destino no existe");
+		}
+	}
 
 	/**
 	 * MÉTODO OVERRIDE PARA IMPRIMIR TODO LOS DATOS DEL CLIENTE

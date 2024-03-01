@@ -4,106 +4,99 @@ import java.util.Scanner;
 
 public class BancoElectronico {
 
-	/**
-	 * CREACIÓN DE LA CLASE CAJEROELECTRONICO CON ATRIBUNOS DE IDENTIFICADOR DE
-	 * CLIENTE Y PASSWORD
-	 */
-
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		
-		char menu = ' ';
-		boolean isCliente = false;
-
-		/**
-		 * ARRAY CON LOS 5 CLIENTES Y ABAJO DECLARADOS CON SU RESPECTIVO ID Y PASSWORD
-		 */
+		char opcionMenu = ' ';
+		int identificadorCliente = 0;
 
 		Cliente[] clientes = new Cliente[5];
-
 		clientes[0] = new Cliente(123456, 123456);
 		clientes[1] = new Cliente(98620, 1234);
 		clientes[2] = new Cliente(123, 12345);
 		clientes[3] = new Cliente(12, 123);
 		clientes[4] = new Cliente(12345, 1234);
 
-		/**
-		 * EMPEZAMOS PIDIENDO ID Y COMPROBABMOS CON EL MÉTODO COMPROBARIDENTIFCADOR SÍ
-		 * EXISTE. SÍ COINCIDE CON ALGUNO DE LOS ID PEDIMOS PASSWORD, Y TAMBIÉN
-		 * COMPROBAMOS PASSWORD CON EL MÉTODO
-		 */
+		identificadorCliente = autenticarCliente(clientes);
+		
+		while (identificadorCliente != 0) {
+			mostrarMenu();
+			opcionMenu = sc.nextLine().toUpperCase().charAt(0);
 
-		isCliente = menuClaves(clientes);
-		/**
-		 * LIMPIAMOS BUFFER Y SEGUIDO DE ESTO, PASAMOS A IMPRIMIR NUESTRO MENÚ DONDE EL
-		 * USUARIO PODRÁ REALIZAR LAS DIVERSAS FUNCIONES.
-		 */
-		while (isCliente) {
-			System.out.println("Menú de opciones: ");
-			System.out.println("A. Mostrar saldo actual");
-			System.out.println("B. Ingresar importe");
-			System.out.println("C. Obtener importe");
-			System.out.println("D. Transferir importe");
-			System.out.println("E. Añadir Inversión");
-			System.out.println("F. Eliminar Inversión");
-			System.out.println("G. Comprobar Inversiones");
-			System.out.println("H. Salir");
-			menu = sc.nextLine().toUpperCase().charAt(0);
-
-			switch (menu) {
+			switch (opcionMenu) {
 			case 'A':
-				System.out.println("el saldo es :" + clientes[0].getMonedero());
+				Cliente.mostrarSaldoCliente(clientes, identificadorCliente);
 				break;
 			case 'B':
-				Cliente.realizarIngreso(clientes[0]);
+				Cliente.ingresarSaldoCliente(clientes, identificadorCliente);
 				break;
 			case 'C':
-
+				Cliente.retirarSaldoCliente(clientes, identificadorCliente);
 				break;
 			case 'D':
-				Cliente.transferirImporte(clientes[0], clientes[1]);
+				Cliente.transferenciaClientes(clientes, identificadorCliente);
 				break;
 			case 'E':
+				// Agregar lógica para añadir inversión
 				break;
 			case 'F':
+				// Agregar lógica para eliminar inversión
 				break;
 			case 'G':
+				// Agregar lógica para comprobar inversiones
 				break;
 			case 'H':
-				System.out.println("Salir");
-				isCliente = menuClaves(clientes);
+				System.out.println("Saliendo...");
+				identificadorCliente = autenticarCliente(clientes);
 				break;
 			default:
-				System.out.println("Opción incorrecta, seleccione una letra correspodiente del menú [A-B-C-D-E]");
+				System.out.println("Opción incorrecta, seleccione una letra correspondiente del menú [A-H]");
 			}
-
 		}
 
 		sc.close();
 	}
 
-	public static boolean menuClaves(Cliente[] clientes) {
+	public static int autenticarCliente(Cliente[] clientes) {
 		Scanner sc = new Scanner(System.in);
-		boolean isCliente = false;
-		int identificadorCliente;
+		int identificadorCliente = 0;
+		int identificadorIngresado;
 		int password;
-		System.out.println("Ingrese su identificador de cliente: ");
-		identificadorCliente = sc.nextInt();
-		if (Cliente.comprobarIdentificador(clientes, identificadorCliente)) {
-			System.out.println("Ingrese su contraseña: ");
-			password = sc.nextInt();
-			if (Cliente.comprobarPassword(clientes, password)) {
-				System.out.println("Bienvenido " + identificadorCliente);
-				isCliente = true;
-			} else {
-				System.out.println("Contraseña incorrecta");
-			}
 
-		} else {
+		System.out.println("Ingrese su identificador de cliente: ");
+		identificadorIngresado = sc.nextInt();
+
+		for (Cliente cliente : clientes) {
+			if (cliente.getIdentificador() == identificadorIngresado) {
+				System.out.println("Ingrese su contraseña: ");
+				password = sc.nextInt();
+
+				if (cliente.getPassword() == password) {
+					System.out.println("Bienvenido " + identificadorIngresado);
+					identificadorCliente = identificadorIngresado;
+				} else {
+					System.out.println("Contraseña incorrecta");
+				}
+				break;
+			}
+		}
+
+		if (identificadorCliente == 0) {
 			System.out.println("El identificador no existe");
 		}
-		sc.nextLine();
-		return isCliente;
+
+		sc.nextLine(); // Limpiar el buffer del scanner
+		return identificadorCliente;
 	}
 
+	public static void mostrarMenu() {
+		System.out.println("Menú de opciones: ");
+		System.out.println("A. Mostrar saldo actual");
+		System.out.println("B. Ingresar importe");
+		System.out.println("C. Obtener importe");
+		System.out.println("D. Transferir importe");
+		System.out.println("E. Añadir Inversión");
+		System.out.println("F. Eliminar Inversión");
+		System.out.println("G. Comprobar Inversiones");
+		System.out.println("H. Salir");
+	}
 }
